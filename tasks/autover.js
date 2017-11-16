@@ -54,7 +54,7 @@ module.exports = function(grunt) {
        for( let key in options.output){
           var output =  options.output[key]
            if ( output ){
-            grunt.file.write(output, grunt.util.normalizelf('require.config='+(JSON.stringify(config))+''));
+            grunt.file.write(output, grunt.util.normalizelf('require.config('+(JSON.stringify(config))+')'));
             // Print a success message.
             grunt.log.writeln('File "' + output + '" created.');
             return true;

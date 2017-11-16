@@ -1,1 +1,1 @@
-require.config={"map":{"*":{"js/a":"js/a.js?version=2xh5ly9v138p9","js/b":"js/b.js?version=1mz63bh1ei04r","js/c":"js/c.js?version=36bwj6pjaqfr9","js/css/style/index":"js/css/style/index.js?version=33niihzj4ux45"}}}
+require.config({"map":{"*":{"js/a":"js/a.js?version=2xh5ly9v138p9","js/b":"js/b.js?version=1mz63bh1ei04r","js/c":"js/c.js?version=36bwj6pjaqfr9","js/css/style/index":"js/css/style/index.js?version=33niihzj4ux45"}}})?version=2vxm63y89kw9w

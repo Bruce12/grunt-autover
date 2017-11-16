@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CRM</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- build:css(.) /styles/vendor.css -->
+    <!-- bower components css-->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/datetimepicker/jquery.datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angucomplete-alt/angucomplete-alt.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jquery-ui/themes/base/jquery-ui.min.css">
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/style.css -->
+    <link rel="stylesheet" type="text/css" href="styles/theme/AdminLTE.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/theme/skin-blue.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/fancybox.css">
+    <link rel="stylesheet" type="text/css" href="styles/nav.css" />
+    <link rel="stylesheet" type="text/css" href="styles/main.css" />
+    <link rel="stylesheet" type="text/css" href="styles/msg.css" />
+    <link rel="stylesheet" type="text/css" href="styles/products.css" />
+    <link rel="stylesheet" type="text/css" href="styles/task.css" />
+    <link rel="stylesheet" type="text/css" href="styles/market.css" />
+    <link rel="stylesheet" type="text/css" href="styles/purchase_auth.css" />
+    <link rel="stylesheet" type="text/css" href="styles/feedback.css" />
+    <link rel="stylesheet" type="text/css" href="styles/trade.css" />
+    <link rel="stylesheet" type="text/css" href="styles/order.css" />
+    <link rel="stylesheet" type="text/css" href="styles/jquery.range.css" />
+    <link rel="stylesheet" type="text/css" href="styles/umeditor.css" >
+    <!-- endbuild -->
+    <!-- <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/account.css" />-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-app="myApp" class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper" ng-controller="appController">
+        <!-- nav -->
+        <div ng-include="'nav/sidebar.html'" ng-controller="navController"></div>
+        <!-- main -->
+        <div class="content-wrapper">
+            <div class="crm-breadcrumb" ncy-breadcrumb></div>
+            <section class="content">
+                <div ui-view></div>
+            </section>
+        </div>
+        <!-- footer bar -->
+        <div class="wait-spinner">
+            <div class="mask"></div>
+            <div class="my-progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    请稍等...
+                </div>
+            </div>
+        </div>
+        <div id="alert-msg" class="msg">
+            <div class="mask"></div>
+            <div id="global-msg" class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>提示：</strong><span class="text"></span>
+            </div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-breadcrumb/release/angular-breadcrumb.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>
+    <script src="bower_components/angucomplete-alt/angucomplete-alt-modify.js"></script>
+    <script src="bower_components/echarts/build/dist/echarts.js"></script>
+    <script src="bower_components/echarts/build/dist/chart/bar.js"></script>
+    <script src="bower_components/echarts/build/dist/chart/line.js"></script>
+    <script src="bower_components/echarts/build/dist/chart/radar.js"></script>
+    <script src="assets/lib/jRange/jquery.range-min.js"></script>
+    <script type="text/javascript" src="assets/lib/jquery.base.js"></script>
+    <!-- endbuild -->
+    <!--lib -->
+    <!-- build:js(app) /scripts/app.js -->
+    <!-- app definition -->
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="appController.js"></script>
+    <script type="text/javascript" src="config/config.js"></script>
+    <script type="text/javascript" src="/shared/admin/app.min.js"></script>
+    <script type="text/javascript" src="/shared/spinner/spinner.js"></script>
+    <script type="text/javascript" src="/shared/alert-msg.js"></script>
+    <script type="text/javascript" src="/shared/fancybox/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/shared/data-filter.js"></script>
+    <script type="text/javascript" src="/shared/tip.service.js"></script>
+    <script type="text/javascript" src="backend/backendSession.js"></script>
+    <script type="text/javascript" src="backend/backend.js"></script>
+    <script type="text/javascript" src="backend/backend-auth-service.js"></script>
+    <!-- filters -->
+    <script type="text/javascript" src="/filter/date-filter.js"></script>
+    <!-- directives -->
+    <script type="text/javascript" src="/directive/uploadDirectives.js"></script>
+    <script type="text/javascript" src="/directive/timepickerDirectives.js"></script>
+    <script type="text/javascript" src="/directive/galleryDirectives.js"></script>
+    <script type="text/javascript" src="/directive/resizeimgDirective.js"></script>
+    <script type="text/javascript" src="/shared/ng-image-compress.js"></script>
+    <script type="text/javascript" src="/directive/selectDirectives.js"></script>
+    <script type="text/javascript" src="/directive/pagination.js"></script>
+    <script type="text/javascript" src="/role/role-oper-directives.js"></script>
+    <script type="text/javascript" src="directive/imgParallelDirectives.js"></script>
+    <script type="text/javascript" src="directive/areaDirectives.js"></script>
+    <script type="text/javascript" src="directive/popupDirectives.js"></script>
+    <script type="text/javascript" src="directive/widgetStaffDirectives.js"></script>
+    <script type="text/javascript" src="directive/videoDirectives.js"></script>
+    <script type="text/javascript" src="directive/searchCategoryDirectives.js"></script>
+    <script type="text/javascript" src="directive/scrollBottomDirectives.js"></script>
+    <script type="text/javascript" src="directive/ctrlEnterDirectives.js"></script>
+    <script type="text/javascript" src="directive/rangeDirectives.js"></script>
+    <script type="text/javascript" src="directive/echartDirectives.js"></script>
+    <script type="text/javascript" src="directive/sendNoticeDirectives.js"></script>
+    <script type="text/javascript" src="directive/preImgDirectives.js"></script>
+    <script type="text/javascript" src="directive/echartLine.directives.js"></script>
+    <script type="text/javascript" src="directive/echartBar.directives.js"></script>
+    <script type="text/javascript" src="directive/starRankDirectives.js"></script>
+    <script type="text/javascript" src="directive/chatDirectives.js"></script>
+    <script type="text/javascript" src="directive/userSelectorDirective.js"></script>
+    <!-- controllers -->
+    <script type="text/javascript" src="home/homeController.js"></script>
+    <script type="text/javascript" src="nav/navController.js"></script>
+    <script type="text/javascript" src="products/productsController.js"></script>
+    <script type="text/javascript" src="products/prodetailController.js"></script>
+    <script type="text/javascript" src="purchase_auth/purchaseauthController.js"></script>
+    <script type="text/javascript" src="enterprise_auth/enterpriseauthController.js"></script>
+    <script type="text/javascript" src="enterprise_auth/enterprisedetailController.js"></script>
+    <script type="text/javascript" src="enterprise_auth/enterpriseaddController.js"></script>
+    <script type="text/javascript" src="extraction/extractionController.js"></script>
+    <script type="text/javascript" src="feedback/feedbackController.js"></script>
+    <script type="text/javascript" src="workorder/workorderController.js"></script>
+    <script type="text/javascript" src="workorder/workorderDetailController.js"></script>
+    <script type="text/javascript" src="agricultural/agriculturalController.js"></script>
+    <script type="text/javascript" src="agricultural/agriculturaldetailController.js"></script>
+    <script type="text/javascript" src="origin_short_comment/shortController.js"></script>
+    <script type="text/javascript" src="messenger/messengerController.js"></script>
+    <script type="text/javascript" src="supply/supplyController.js"></script>
+    <script type="text/javascript" src="talk/talkController.js"></script>
+    <script type="text/javascript" src="advanced/advancedController.js"></script>
+    <!--<script type="text/javascript" src="complaint/complaint.controller.js"></script>-->
+    <!--script type="text/javascript" src="complaint/complaintMange.controller.js"></script-->
+    <script type="text/javascript" src="complaint/complaintDetail.controller.js"></script>
+    <script type="text/javascript" src="business_card/business.controller.js"></script>
+    <script type="text/javascript" src="tool/tool.controller.js"></script>
+    <script type="text/javascript" src="relationship/relationship.controller.js"></script>
+    <!-- old crm controller -->
+    <script type="text/javascript" src="/market/callEmployeeController.js"></script>
+    <script type="text/javascript" src="/market/callManagerController.js"></script>
+    <script type="text/javascript" src="/market/callMessageController.js"></script>
+    <script type="text/javascript" src="/market/taskDetailController.js"></script>
+    <script type="text/javascript" src="/market/callOriginController.js"></script>
+    <script type="text/javascript" src="/market/taskDetailEmployeeController.js"></script>
+    <script type="text/javascript" src="/market/taskAssignedController.js"></script>
+    <script type="text/javascript" src="/user/potentialUserController.js"></script>
+    <script type="text/javascript" src="/market/purchaseMainController.js"></script>
+    <script type="text/javascript" src="/market/callStatisticsController.js"></script>
+    <script type="text/javascript" src="/market/callSeatController.js"></script>
+    <script type="text/javascript" src="/market_short_comment/saleController.js"></script>
+    <script type="text/javascript" src="/trade/orderListController.js"></script>
+    <script type="text/javascript" src="/trade/orderDetailController.js"></script>
+    <script type="text/javascript" src="/trade/schedulingController.js"></script>
+    <script type="text/javascript" src="/strength_audit/strengthlistController.js"></script>
+    <script type="text/javascript" src="temporary_vip/vipController.js"></script>
+    <script type="text/javascript" src="vip/vipListController.js"></script>
+    <script type="text/javascript" src="vip/vipDetailController.js"></script>
+    <script type="text/javascript" src="purchase/purchase.controller.js"></script>
+    <script type="text/javascript" src="purchase/purchaseDetail.controller.js"></script>
+    <script type="text/javascript" src="operate/operate.controller.js"></script>
+    <script type="text/javascript" src="evaluate/evaluate.controller.js"></script>
+    <!-- old crm controller end-->
+    <!-- services -->
+    <script type="text/javascript" src="home/homeService.js"></script>
+    <script type="text/javascript" src="products/productsService.js"></script>
+    <script type="text/javascript" src="purchase_auth/purchaseauthService.js"></script>
+    <script type="text/javascript" src="enterprise_auth/enterpriseService.js"></script>
+    <script type="text/javascript" src="extraction/extractionService.js"></script>
+    <script type="text/javascript" src="feedback/feedbackService.js"></script>
+    <script type="text/javascript" src="workorder/workorderService.js"></script>
+    <script type="text/javascript" src="agricultural/agriculturalService.js"></script>
+    <script type="text/javascript" src="origin_short_comment/shortService.js"></script>
+    <script type="text/javascript" src="messenger/messengerService.js"></script>
+    <script type="text/javascript" src="supply/supplyService.js"></script>
+    <script type="text/javascript" src="market_short_comment/saleService.js"></script>
+    <script type="text/javascript" src="trade/tradeService.js"></script>
+    <script type="text/javascript" src="vip/vipService.js"></script>
+    <script type="text/javascript" src="talk/talkService.js"></script>
+    <script type="text/javascript" src="advanced/advancedService.js"></script>
+    <script type="text/javascript" src="complaint/complaint.service.js"></script>
+    <script type="text/javascript" src="/user_center/uc.service.js"></script>
+    <script type="text/javascript" src="business_card/business.service.js"></script>
+    <script type="text/javascript" src="purchase/purchase.service.js"></script>
+    <script type="text/javascript" src="tool/tool.service.js"></script>
+    <script type="text/javascript" src="operate/operate.service.js"></script>
+    <script type="text/javascript" src="relationship/relationship.service.js"></script>
+    <script type="text/javascript" src="evaluate/evaluate.service.js"></script>
+    <!-- old crm service -->
+    <script type="text/javascript" src="/market/callService.js"></script>
+    <script type="text/javascript" src="/user/userService.js"></script>
+    <script type="text/javascript" src="/role/roleService.js"></script>
+    <script type="text/javascript" src="/shared/locationService.js"></script>
+    <script type="text/javascript" src="/strength_audit/strengthService.js"></script>
+    <script type="text/javascript" src="/temporary_vip/vipService.js"></script>
+    <!-- old crm service end -->
+    <!-- endbuild -->
+    <!--phonecall func -->
+    <!-- <script type="text/javascript" src="/Js_UI/jquery.timers.js"></script>
+    <script type="text/javascript" src="/Js_UI/AgentUI.js"></script>
+    <script type="text/javascript" src="/Js_UI/AgentProxy.js"></script>
+    <script type="text/javascript" src="/Js_UI/AgentStateInterpretor.js"></script>
+    <script type="text/javascript" src="/Js_UI/callingController.js"></script>
+    <script type="text/javascript" src="/Js_UI/widgetPhoneDirectives.js"></script>
+     -->
+    <!--new phonecall func -->
+    <!-- build:js(app) /scripts/call.js -->
+    <script type="text/javascript" src="/call/xlp_new.js"></script>
+    <script type="text/javascript" src="/call/xlp.agent_toolbar.js"></script>
+    <script type='text/javascript' src='/call/xlp.call.event.js'></script>
+    <script type='text/javascript' src='/call/xlp.call.pageservice.js'></script>
+    <script type='text/javascript' src='/call/xlp.call.callaction.js'></script>
+    <script type="text/javascript" src="/call/callingController.js"></script>
+    <script type="text/javascript" src="/call/widgetPhoneDirectives.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js(.) /scripts/UEditor.js -->
+    <script type="text/javascript" charset="utf-8" src="assets/lib/UEditor/template.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="assets/lib/UEditor/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="assets/lib/UEditor/umeditor.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="assets/lib/UEditor/lang/zh-cn/zh-cn.js"></script>
+    
+
+    <!-- endbuild -->
+
+    <!-- build:js(.) /scripts/require.config.js -->
+    <script type="text/javscript" charset="utf-8" src="/scripts/require.config.js"></script>
+    <!-- endbuild -->
+    <script type="text/javascript">
+        window.onpopstate = function(){
+            $(".overlay").hide();
+        }
+    </script>
+    <!-- 百度地图 -->
+    <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=DA2d623f92c1d7ee5d32584f28abac25"></script>
+    <!--yimutian track -->
+    <script async="async" type="text/javascript" src="//s.yimutian.com/js/js_tracker.min.js"></script>
+</body>
+
+</html>

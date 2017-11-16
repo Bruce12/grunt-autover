@@ -21,13 +21,18 @@ module.exports = function(grunt) {
       test:{
         options: {
           output:{
-             'test':'test/a.js'
+             'test':'test/a.js',
+             'ccc':'sdfsdfsdfsdf'
            }
         },
        files:{
-        'js/':['js/**/*.js']
+        'js/':['app/js/**/*.js']
        }
-      }
+
+      },
+      dist:{
+         aaa:'sdfssdfsdddddddf'
+       }
     }
   });
 
@@ -38,7 +43,10 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'autover']);
+  grunt.registerTask('test',function(){
+     grunt.task.run(['autover:test'])
+  });
+ 
 
   // By default, lint and run all tests.
   grunt.registerTask('default',['test']);
